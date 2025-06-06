@@ -13,9 +13,18 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 25%, #0093e6 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: oceanWave 8s ease-in-out infinite;
             color: #333;
             overflow-x: hidden;
+        }
+
+        @keyframes oceanWave {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 100%; }
         }
 
         .presentation-container {
@@ -87,7 +96,9 @@
 
         .cover-slide {
             text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #0093e6 100%);
+            background-size: 300% 300%;
+            animation: oceanWave 6s ease-in-out infinite;
             color: white;
             padding: 80px 40px;
         }
@@ -227,7 +238,9 @@
             text-align: center;
             padding: 20px;
             margin: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #0093e6 100%);
+            background-size: 200% 200%;
+            animation: oceanWave 10s ease-in-out infinite;
             color: white;
             border-radius: 15px;
             min-width: 150px;
@@ -241,7 +254,9 @@
 
         .final-slide {
             text-align: center;
-            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #0093e6 100%);
+            background-size: 300% 300%;
+            animation: oceanWave 6s ease-in-out infinite;
             color: white;
             padding: 60px 40px;
         }
@@ -339,7 +354,7 @@
                 <div class="info-card">
                     <h3>💄 Wedding Organizer</h3>
                     <p><strong>Dade Rias Pengantin</strong></p>
-                    <p>Tema: Manten Solo Putri</p>
+                    <p>Tema: Manten Solo Putri Muslim</p>
                 </div>
                 <div class="info-card">
                     <h3>👥 Tim Rias</h3>
@@ -349,8 +364,19 @@
                     <p>• Bagian Make Up Pria</p>
                 </div>
                 <div class="info-card">
+                    <h3>👨‍👩‍👧‍👦 Yang Dirias</h3>
+                    <p><strong>Kedua Mempelai:</strong></p>
+                    <p>• Masing-masing 1 kali rias (dalam satu sesi)</p>
+                    <p><strong>Keluarga Mempelai:</strong></p>
+                    <p>• Orang tua/wali dan keluarga pendamping</p>
+                    <p><strong>Keluarga yang dirias:</strong></p>
+                    <p>• Lilin Karolin</p>
+                    <p>• Linatis Saidah</p>
+                    <p>• Rini Handayani</p>
+                </div>
+                <div class="info-card">
                     <h3>✨ Detail Tata Rias</h3>
-                    <p>• Make up tradisional Solo Putri</p>
+                    <p>• Make up tradisional Solo Putri Muslim</p>
                     <p>• Pengaplikasian hena di tangan</p>
                     <p>• Nail art untuk pengantin wanita</p>
                 </div>
