@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Acara Akad Nikah</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            margin: 20px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide:nth-child(1) { animation-delay: 0.2s; }
+        .slide:nth-child(2) { animation-delay: 0.4s; }
+        .slide:nth-child(3) { animation-delay: 0.6s; }
+        .slide:nth-child(4) { animation-delay: 0.8s; }
+        .slide:nth-child(5) { animation-delay: 1.0s; }
+        .slide:nth-child(6) { animation-delay: 1.2s; }
+        .slide:nth-child(7) { animation-delay: 1.4s; }
+        .slide:nth-child(8) { animation-delay: 1.6s; }
+        .slide:nth-child(9) { animation-delay: 1.8s; }
+
+        .slide-title {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .slide-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .cover-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+        }
+
+        .cover-slide .slide-title {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .couple-names {
+            font-size: 2.2em;
+            margin: 20px 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .event-details {
+            font-size: 1.3em;
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .heart-icon {
+            font-size: 3em;
+            margin: 30px 0;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #4ecdc4;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .family-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .family-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .family-card.bride {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .family-card h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .family-member {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #4ecdc4;
+        }
+
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .menu-item {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: #bbdefb;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .final-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            padding: 60px 40px;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            .slide-title {
+                font-size: 2em;
+            }
+            
+            .family-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Cover Slide -->
+        <div class="slide cover-slide">
+            <h1 class="slide-title">LAPORAN ACARA AKAD NIKAH</h1>
+            <div class="heart-icon">💕</div>
+            <div class="couple-names">Tri Riyanti & Wiwik Tri Budi Mulyono</div>
+            <div class="event-details">📅 Selasa, 29 Juli 2025</div>
+            <div class="event-details">📍 Resto Ulam Sari</div>
+            <div class="event-details">👥 ±50 Tamu Undangan</div>
+        </div>
+
+        <!-- Statistik Acara -->
+        <div class="slide">
+            <h2 class="slide-title">Statistik Acara</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">50</div>
+                    <div>Total Tamu</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30</div>
+                    <div>Pihak Wanita</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div>Pihak Pria</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div>Keluarga Dekat</div>
+                </div>
+            </div>
+            <div class="highlight">
+                <p><strong>Catatan:</strong> Seluruh tamu merupakan keluarga dekat dan saudara dari kedua mempelai, menciptakan suasana yang hangat dan kekeluargaan.</p>
+            </div>
+        </div>
+
+        <!-- Data Keluarga -->
+        <div class="slide">
+            <h2 class="slide-title">Data Keluarga Mempelai</h2>
+            <div class="family-section">
+                <div class="family-card bride">
+                    <h3>👰 Mempelai Wanita</h3>
+                    <div class="family-member"><strong>Tri Riyanti</strong></div>
+                    <div class="family-member">👨 Ayah: Alm. Karmain</div>
+                    <div class="family-member">👩 Ibu: Tarmi</div>
+                    <div class="family-member">🎯 PJ & Penyelenggara: Bapak Agung Prihatin</div>
+                    <div class="family-member">🤝 Wali Nikah: Bapak Hadi Sucipto</div>
+                </div>
+                <div class="family-card">
+                    <h3>🤵 Mempelai Pria</h3>
+                    <div class="family-member"><strong>Wiwik Tri Budi Mulyono</strong></div>
+                    <div class="family-member">👨 Ayah: Bapak Wasito</div>
+                    <div class="family-member">👩 Ibu: Ibu Suparmi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Penyelenggara & Tata Rias -->
+        <div class="slide">
+            <h2 class="slide-title">Penyelenggara & Tata Rias</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>💄 Wedding Organizer</h3>
+                    <p><strong>Dade Rias Pengantin</strong></p>
+                    <p>Tema: Manten Solo Putri</p>
+                </div>
+                <div class="info-card">
+                    <h3>👥 Tim Rias</h3>
+                    <p>• Dade Rias - Penata rias utama</p>
+                    <p>• Pendamping Make Up Utama</p>
+                    <p>• Asisten Make Up</p>
+                    <p>• Bagian Make Up Pria</p>
+                </div>
+                <div class="info-card">
+                    <h3>✨ Detail Tata Rias</h3>
+                    <p>• Make up tradisional Solo Putri</p>
+                    <p>• Pengaplikasian hena di tangan</p>
+                    <p>• Nail art untuk pengantin wanita</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dekorasi & Rangkaian Acara -->
+        <div class="slide">
+            <h2 class="slide-title">Dekorasi & Rangkaian Acara</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎨 Dekorasi</h3>
+                    <p>Ukuran: 3 meter</p>
+                    <p>Nuansa: Putih elegan</p>
+                    <p>Fasilitas: Meja & kursi untuk 6 orang</p>
+                </div>
+                <div class="info-card">
+                    <h3>📋 Susunan Acara</h3>
+                    <p>• Pembukaan</p>
+                    <p>• Pembacaan Al-Qur'an</p>
+                    <p>• Prosesi Akad Nikah</p>
+                    <p>• Sesi Foto Keluarga</p>
+                    <p>• Penyampaian Pesan & Wejangan</p>
+                </div>
+            </div>
+            <div class="highlight">
+                <p><strong>MC:</strong> Bapak Rizal sebagai pranata acara memandu prosesi dengan khidmat dan lancar</p>
+            </div>
+        </div>
+
+        <!-- Wejangan Keluarga -->
+        <div class="slide">
+            <h2 class="slide-title">Pesan & Wejangan Keluarga</h2>
+            <div class="highlight">
+                <p><strong>Disampaikan oleh:</strong> Bapak Agung Prihatin (mewakili keluarga mempelai wanita)</p>
+            </div>
+            <div class="quote">
+                "Selamat memulai kehidupan rumah tangga, semoga langgeng, rukun, dan saling memahami. Tetap menjunjung nilai-nilai keluarga, hormat pada orang tua, dan selalu berusaha membangun komunikasi yang baik. Jadilah pasangan yang saling melengkapi, saling menguatkan dalam suka dan duka."
+            </div>
+            <div class="highlight">
+                <p>Ucapan disampaikan dengan hangat dan penuh haru, ditutup dengan doa bersama yang menciptakan momen yang sangat berkesan.</p>
+            </div>
+        </div>
+
+        <!-- Menu & Dokumentasi -->
+        <div class="slide">
+            <h2 class="slide-title">Menu & Dokumentasi</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🍽️ Menu Paket Edelweis</h3>
+                    <div class="menu-list">
+                        <div class="menu-item">Nasi Putih</div>
+                        <div class="menu-item">Ayam Kampung</div>
+                        <div class="menu-item">Cap Cay Goreng</div>
+                        <div class="menu-item">Trancam</div>
+                        <div class="menu-item">Sambal & Kerupuk</div>
+                        <div class="menu-item">Teh & Air Mineral</div>
+                        <div class="menu-item">Buah Potong</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>☕ Coffee Break</h3>
+                    <p>• Risol mayo</p>
+                    <p>• Lemper</p>
+                    <p>• Emping</p>
+                    <p>• Air mineral Cleo</p>
+                </div>
+            </div>
+            <div class="highlight">
+                <h3>📸 Dokumentasi</h3>
+                <p>Fotografer Indoor & Outdoor mencakup: persiapan rias, proses akad, wejangan keluarga, sesi foto bersama, dan suasana outdoor</p>
+            </div>
+        </div>
+
+        <!-- Kesimpulan -->
+        <div class="slide final-slide">
+            <h2 class="slide-title">Kesimpulan Acara</h2>
+            <div class="highlight" style="background: rgba(255,255,255,0.2); color: white; border-color: white;">
+                <p><span class="emoji">✅</span> Seluruh prosesi berjalan tertib dan tepat waktu</p>
+                <p><span class="emoji">❤️</span> Atmosfer acara sangat kekeluargaan dan hangat</p>
+                <p><span class="emoji">👏</span> Kualitas rias, dokumentasi, dan pelayanan mendapat apresiasi tinggi</p>
+                <p><span class="emoji">🤝</span> Koordinasi vendor berjalan sempurna</p>
+                <p><span class="emoji">🙏</span> Tidak ada kendala selama pelaksanaan</p>
+            </div>
+            <div style="margin-top: 40px; font-size: 1.5em;">
+                <p>Semoga keluarga baru ini senantiasa bahagia dan berkah! <span class="emoji">💕</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling animation
+        window.addEventListener('scroll', () => {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                
+                if (scrollY > slideTop - windowHeight + 100) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Add click to scroll functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    if (index < slides.length - 1) {
+                        slides[index + 1].scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
