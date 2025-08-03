@@ -3,1044 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rundown Akad Nikah - Wiwik & Tri Riyanti</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Dade Wedding - Complete Invoice</title>
+	<style>
+	@page {
+		size: A4 landscape;
+		margin: 0;
+	}
 
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #ffeef2 0%, #fff5f1 50%, #f8f4ff 100%);
-            color: #2d3748;
-            min-height: 100vh;
-            padding: 20px;
-        }
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
+	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		line-height: 1.5;
+		color: #333;
+		background: white;
+		font-size: 11px;
+		margin: 0;
+		padding: 0;
+		print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+	}
 
-        .header {
-            background: linear-gradient(135deg, #d69e2e, #e6b800, #f7d794);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-        }
+	.page {
+		width: 100%;
+		min-height: 185mm;
+		padding: 10mm;
+		page-break-after: always;
+		background: white;
+	}
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-        }
+	.footer {
+		margin-top: 10px;
+		text-align: center;
+		font-size: 10px;
+		color: #666;
+		border-top: 1px solid #8B4513;
+		padding-top: 6px;
+	}
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-        }
+	.page:last-child {
+		page-break-after: avoid;
+	}
 
-        .wedding-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px;
-            position: relative;
-            z-index: 1;
-        }
+	/* Hilangkan header */
+	.header {
+		display: none;
+	}
 
-        .info-card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+	/* Judul halaman */
+	.page-title {
+		font-size: 20px;
+		font-weight: bold;
+		color: #8B4513;
+		text-align: center;
+		margin-bottom: 15px;
+		background: #fdf6e3;
+		padding: 10px;
+		border-radius: 6px;
+		border-left: 5px solid #8B4513;
+	}
 
-        .info-card .emoji {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
+	.page-subtitle {
+		font-size: 12px;
+		color: #666;
+		text-align: center;
+		font-style: italic;
+	}
 
-        .info-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
+	/* Struktur AKAD */
+	.akad-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		margin-bottom: 15px;
+	}
 
-        .content {
-            padding: 30px;
-        }
+	.akad-section {
+		background: #fffaf0;
+		border-radius: 8px;
+		padding: 10px;
+		border-left: 4px solid #8B4513;
+	}
 
-        .timeline-item {
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff, #fafafa);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid #d69e2e;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+	.akad-section-title {
+		font-size: 14px;
+		font-weight: bold;
+		color: #8B4513;
+		margin-bottom: 8px;
+		border-bottom: 1px solid #8B4513;
+		padding-bottom: 4px;
+	}
 
-        .timeline-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
+	.akad-item {
+		display: flex;
+		justify-content: space-between;
+		padding: 4px 0;
+		border-bottom: 1px dotted #ccc;
+		font-size: 11px;
+	}
 
-        .time-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+	.akad-item.subtotal {
+		font-weight: bold;
+		background: #f5f5dc;
+		padding: 6px;
+		border-radius: 4px;
+		border-top: 1px solid #8B4513;
+		margin-top: 8px;
+	}
 
-        .time-badge {
-            background: linear-gradient(135deg, #d69e2e, #e6b800);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(214, 158, 46, 0.3);
-        }
+	.akad-summary {
+		background: #8B4513;
+		color: white;
+		padding: 10px;
+		border-radius: 8px;
+		margin-top: 15px;
+	}
 
-        .activity-title {
-            font-size: 1.4rem;
-            color: #2d3748;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+	.akad-summary-title {
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 8px;
+	}
 
-        .activity-title .emoji {
-            font-size: 1.5rem;
-        }
+	.akad-summary-row {
+		display: flex;
+		justify-content: space-between;
+		font-size: 12px;
+		padding: 4px 0;
+		border-bottom: 1px solid rgba(255,255,255,0.3);
+	}
 
-        .activity-content {
-            margin-top: 15px;
-        }
+	.akad-summary-row.final {
+		font-size: 14px;
+		font-weight: bold;
+		color: #90EE90;
+		border-top: 1px solid rgba(255,255,255,0.4);
+		margin-top: 8px;
+		padding-top: 6px;
+	}
 
-        .section {
-            margin-bottom: 20px;
-        }
+	/* Grid Service */
+	.services-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+		font-size: 10px;
+		margin-top: 10px;
+	}
 
-        .section h4 {
-            color: #d69e2e;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+	.service-item {
+		padding: 4px 6px;
+		background: #fefefe;
+		border-left: 3px solid #8B4513;
+		border-radius: 4px;
+	}
 
-        .section ul {
-            list-style: none;
-            padding-left: 0;
-        }
+	/* RESEPSI */
+	.reception-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 10px;
+		margin-bottom: 15px;
+	}
 
-        .section li {
-            padding: 5px 0;
-            padding-left: 20px;
-            position: relative;
-        }
+	.section {
+		background: #fffaf0;
+		border-left: 4px solid #8B4513;
+		padding: 10px;
+		border-radius: 6px;
+	}
 
-        .section li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #d69e2e;
-            font-weight: bold;
-        }
+	.section-title {
+		background: #8B4513;
+		color: white;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+		padding: 6px;
+		border-radius: 4px;
+		margin-bottom: 8px;
+	}
 
-        .pic-info {
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border-left: 3px solid #4299e1;
-        }
+	.item-list {
+		list-style: none;
+		padding-left: 0;
+		font-size: 11px;
+	}
 
-        .notes {
-            background: #fff5f5;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border-left: 3px solid #f56565;
-        }
+	.item-list li {
+		padding: 3px 0 3px 14px;
+		position: relative;
+		border-bottom: 1px dotted #ccc;
+	}
 
-        .notes h4 {
-            color: #c53030 !important;
-        }
+	.item-list li:before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: #8B4513;
+	}
 
-        .table-container {
-            overflow-x: auto;
-            margin: 15px 0;
-        }
+	/* Info Paket */
+	.package-info {
+		background: #f0f8ff;
+		padding: 10px;
+		border-left: 4px solid #8B4513;
+		border-radius: 6px;
+		text-align: center;
+		margin-bottom: 15px;
+	}
 
-        .ceremony-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+	.package-title {
+		font-size: 16px;
+		font-weight: bold;
+		color: #8B4513;
+	}
 
-        .ceremony-table th {
-            background: linear-gradient(135deg, #d69e2e, #e6b800);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: bold;
-        }
+	.price-info {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+		flex-wrap: wrap;
+		font-size: 12px;
+	}
 
-        .ceremony-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+	.original-price {
+		text-decoration: line-through;
+		color: #888;
+	}
 
-        .ceremony-table tr:last-child td {
-            border-bottom: none;
-        }
+	.current-price {
+		font-weight: bold;
+		color: #8B4513;
+	}
 
-        .ceremony-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
+	/* Pembayaran */
+	.payment-section {
+		background: #e0f7fa;
+		padding: 10px;
+		border: 2px solid #8B4513;
+		border-radius: 6px;
+	}
 
-        .ceremony-table tr:hover {
-            background: #e6f3ff;
-        }
+	.payment-row {
+		display: flex;
+		justify-content: space-between;
+		padding: 4px 0;
+		border-bottom: 1px solid #ccc;
+		font-size: 11px;
+	}
 
-        .chairs-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-            text-align: center;
-        }
+	.payment-row.total {
+		font-weight: bold;
+		font-size: 12px;
+		color: #8B4513;
+		background: #f5f5dc;
+		margin-top: 10px;
+		padding: 8px;
+		border-radius: 4px;
+	}
 
-        .chair-item {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+	.amount {
+		font-weight: bold;
+		font-family: 'Courier New', monospace;
+	}
+	</style>
 
-        .footer {
-            background: linear-gradient(135deg, #2d3748, #4a5568);
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .wedding-info {
-                grid-template-columns: 1fr;
-                margin: 20px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .time-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .chairs-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .timeline-item {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📋 RUNDOWN AKAD NIKAH</h1>
-            <h2>WIWIK & TRI RIYANTI</h2>
+    <!-- PAGE 1: AKAD NIKAH -->
+    <div class="page">
+        
+        <div class="page-title">
+            RINCIAN BIAYA AKAD NIKAH
+            <div class="page-subtitle">Final Rekap (Revisi Terbaru)</div>
+        </div>
+        
+        <div class="akad-grid">
+            <div class="akad-section">
+                <div class="akad-section-title">Konsumsi & Tempat</div>
+                
+                <div class="akad-item">
+                    <span>Konsumsi Utama (60 pax)</span>
+                    <span class="amount">Rp 3.498.000</span>
+                </div>
+                <div class="akad-item">
+                    <span>Snack & Air Mineral (60 pax)</span>
+                    <span class="amount">Rp 720.000</span>
+                </div>
+                <div class="akad-item">
+                    <span>PPH 10% untuk Snack 60 pax</span>
+                    <span class="amount">Rp 72.000</span>
+                </div>
+                
+                <div class="akad-item highlight">
+                    <span><strong>Penyesuaian ke 70 pax:</strong></span>
+                    <span></span>
+                </div>
+                
+                <div class="akad-item">
+                    <span>Konsumsi tambahan 10 pax</span>
+                    <span class="amount">Rp 583.000</span>
+                </div>
+                <div class="akad-item">
+                    <span>Snack tambahan 10 pax + PPH 10%</span>
+                    <span class="amount">Rp 204.000</span>
+                </div>
+                <div class="akad-item">
+                    <span>Konsumsi tim dekorasi (3 pax)</span>
+                    <span class="amount">Rp 174.900</span>
+                </div>
+                <div class="akad-item">
+                    <span>Sewa Tempat (ber-AC)</span>
+                    <span class="amount">Rp 400.000</span>
+                </div>
+                
+                <div class="akad-item subtotal">
+                    <span>Subtotal Konsumsi & Tempat</span>
+                    <span class="amount">Rp 5.651.900</span>
+                </div>
+            </div>
             
-            <div class="wedding-info">
-                <div class="info-card">
-                    <span class="emoji">📅</span>
-                    <h3>Hari/Tanggal</h3>
-                    <p>Minggu, 29 Juli 2025</p>
+            <div class="akad-section">
+                <div class="akad-section-title">Pembayaran (DP) Akad</div>
+                
+                <div class="akad-item">
+                    <span>DP 1 (Resto)</span>
+                    <span class="amount">Rp 500.000</span>
                 </div>
-                <div class="info-card">
-                    <span class="emoji">📍</span>
-                    <h3>Tempat</h3>
-                    <p>Resto Ulam Sari</p>
+                <div class="akad-item">
+                    <span>DP 2</span>
+                    <span class="amount">Rp 9.000.000</span>
                 </div>
-                <div class="info-card">
-                    <span class="emoji">👥</span>
-                    <h3>Jumlah Undangan</h3>
-                    <p>±70 orang</p>
+                <div class="akad-item">
+                    <span>DP 3</span>
+                    <span class="amount">Rp 15.000.000</span>
                 </div>
-                <div class="info-card">
-                    <span class="emoji">🎤</span>
-                    <h3>Disusun oleh</h3>
-                    <p>WO – Dade Rias</p>
+                
+                <div class="akad-item subtotal">
+                    <span>Total Pembayaran (DP)</span>
+                    <span class="amount">Rp 24.500.000</span>
                 </div>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">04.00 – 07.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🔧</span>
-                        Rias Pengantin Wanita (CPW)
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>💄 Kegiatan:</h4>
-                        <ul>
-                            <li>Tata rias & busana lengkap CPW</li>
-                            <li>Persiapan hijab, sanggul, aksesori, sepatu, dan perlengkapan pribadi</li>
-                        </ul>
-                    </div>
-                    <div class="section">
-                        <h4>📍 Lokasi:</h4>
-                        <p>Rumah Dade Rias</p>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p><strong>Rias:</strong> Tim Dade Rias<br>
-                        <strong>Transportasi:</strong> Bp. Agus</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Pastikan CPW sudah dalam kondisi full dress jam 07.30</li>
-                            <li>Tas kecil berisi handphone, tissue, dll dibawa oleh pendamping (Ibu Linatis)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">04.30 – 07.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">💄</span>
-                        Rias Keluarga CPW (5 orang)
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>📍 Lokasi:</h4>
-                        <p>Rumah CPW, Tersono</p>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p><strong>Rias:</strong> Tim Dade Rias<br>
-                        <strong>Transportasi:</strong> Pihak keluarga CPW</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Susun jadwal rias berdasarkan prioritas tampil</li>
-                            <li>Baju seragam keluarga lengkap dengan sepatu dan aksesori</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">04.30 – 07.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">💄</span>
-                        Rias Keluarga CPP (3 orang)
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>📍 Lokasi:</h4>
-                        <p>Rumah CPP, Dersalam</p>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Keluarga CPP</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Koordinasi dengan pihak CPP agar keberangkatan tepat waktu</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">07.30 – 08.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🚐</span>
-                        Persiapan & Loading Personel
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🚗 Kegiatan:</h4>
-                        <ul>
-                            <li>Final touch rias</li>
-                            <li>Koordinasi keberangkatan tim dan keluarga ke venue</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>🚚 PIC Transportasi:</h4>
-                        <p><strong>CPW:</strong> Bp. Agus<br>
-                        <strong>Keluarga CPW:</strong> perwakilan CPW<br>
-                        <strong>Keluarga CPP:</strong> perwakilan CPP</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Pastikan kendaraan sesuai jumlah orang</li>
-                            <li>Semua sudah berangkat maksimal pukul 07.30</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">07.30 – 08.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🏛️</span>
-                        Standby di Venue & Penataan
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎪 Kegiatan:</h4>
-                        <ul>
-                            <li>Penempatan kursi tamu (CPW di kanan/timur, CPP di kiri/barat)</li>
-                            <li>Penataan meja akad, kursi ijab, sound, mic, bunga, dan dokumentasi</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Bp. Agus (venue & teknis), Tim WO (koordinasi posisi duduk), di cek malam sebelum hari H</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Cek sound aktif (mic utama + mic cadangan)</li>
-                            <li>Sediakan tisu di area akad, air minum saksi, kursi cukup 8</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">08.00 – 08.15 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">💦</span>
-                        Penyambutan CPP & Prosesi Tirto Wening
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🌸 Urutan Prosesi:</h4>
-                        <ul>
-                            <li>CPP & rombongan tiba → diarahkan ke pintu utama</li>
-                            <li>Ibu CPW memberi minum simbolik kepada CPP</li>
-                            <li>Bapak Agung (wali CPW) menyerahkan Tirto Wening & sangsangan sekar melati</li>
-                            <li>Jabat tangan antar keluarga</li>
-                            <li>Rombongan CPP diarahkan duduk di kursi tamu di sisi kiri / barat (dekat menu)</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO & Keluarga CPW</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Pastikan alat Tirto Wening tersedia (cawan + kembang)</li>
-                            <li>Pemandu harus sudah siap saat kendaraan CPP tiba</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">08.15 – 08.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🎙️</span>
-                        Sambutan Keluarga
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎤 Urutan:</h4>
-                        <ul>
-                            <li>Sambutan dari pihak CPP</li>
-                            <li>Sambutan dari pihak CPW</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO untuk MC & mic handler<br>
-                        <strong>Durasi Maksimal:</strong> 15 menit</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>MC mengatur flow lancar, tidak perlu panjang</li>
-                            <li>Ingatkan MC untuk perkenalan ringkas</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">08.30 – 08.45 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🎎</span>
-                        Prosesi Pasrah Tampi
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎭 Urutan:</h4>
-                        <ul>
-                            <li>Perwakilan CPW menyerahkan tanggung jawab kepada keluarga CPP</li>
-                            <li>Penerimaan simbolik oleh CPP</li>
-                            <li>Arahkan formasi duduk menuju meja ijab</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Bapak Riza (pembawa pasrah), Tim WO</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Aset pasrah (nampan, dokumen simbolik) harus siap</li>
-                            <li>Pindahkan tamu non-protokol ke kursi umum sebelum ijab</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">08.45 – 09.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🪑</span>
-                        Penempatan Kursi Prosesi Ijab
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎪 Formasi Meja Ijab (8 kursi):</h4>
-                        <div class="chairs-grid">
-                            <div class="chair-item">CPP (Wiwik)</div>
-                            <div class="chair-item">Wali CPW (Bp. Agung)</div>
-                            <div class="chair-item">Penghulu / Naib</div>
-                            <div class="chair-item">Pak Modin</div>
-                            <div class="chair-item">Saksi 1 (Bp. Basari)</div>
-                            <div class="chair-item">Saksi 2 (Bp. Bambang)</div>
-                            <div class="chair-item">Pembaca Al-Qur'an</div>
-                            <div class="chair-item">Tim Bp. Riza</div>
-                        </div>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO venue & dokumentasi</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Semua posisi duduk ditentukan, tidak boleh acak</li>
-                            <li>Meja ijab harus bersih, rapi, tidak ada makanan</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">09.00 – 09.25 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🕌</span>
-                        Prosesi Akad Nikah Inti
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="table-container">
-                        <table class="ceremony-table">
-                            <thead>
-                                <tr>
-                                    <th>Urutan</th>
-                                    <th>Kegiatan</th>
-                                    <th>Penanggung Jawab</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Verifikasi & Registrasi</td>
-                                    <td>Petugas KUA</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pembukaan & Qiroatul Qur'an</td>
-                                    <td>Tim Bp. Riza</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Khutbah Nikah</td>
-                                    <td>Penghulu / Naib</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Ijab Qobul (Wali: Bp. Agung)</td>
-                                    <td>Penghulu</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Doa Nikah</td>
-                                    <td>Penghulu</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Penyerahan Buku Nikah</td>
-                                    <td>Petugas KUA</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Wejangan & Nasehat Pernikahan</td>
-                                    <td>Bp. Agung (keluarga CPW)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>CPW belum hadir di meja ijab saat prosesi ijab</li>
-                            <li>Pastikan sound lancar saat ijab & qobul</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">09.25 – 09.35 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">👰</span>
-                        Temu Pengantin & Momen Sighot Ta'uq
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>💒 Urutan:</h4>
-                        <ul>
-                            <li>CPW masuk ruangan, diiringi Ibu Linatis & Ibu Carolin</li>
-                            <li>Diiringi musik solawat</li>
-                            <li>CPW duduk berdampingan dengan CPP</li>
-                            <li>Pembacaan Sighot Ta'uq (janji pernikahan)</li>
-                            <li>Tanda tangan Buku Nikah</li>
-                            <li>Nasehat dari penghulu</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO + dokumentasi</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Musik solawat disiapkan operator audio</li>
-                            <li>Posisi duduk difoto sebelum meja ijab dibongkar</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">09.35 – 09.45 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">💝</span>
-                        Wejangan Keluarga CPW untuk Mempelai
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎤 Wejangan dari Bp. Agung (mewakili keluarga CPW):</h4>
-                        <div class="notes" style="background: #f0f9ff; border-left: 3px solid #3b82f6;">
-                            <p style="font-style: italic; color: #1e40af; margin-bottom: 15px;">
-                                <strong>"Assalamu'alaikum warahmatullahi wabarakatuh...</strong><br>
-                                Hari ini adalah hari yang penuh haru, hari yang kami nantikan dengan doa dan harapan. 
-                                Tri Riyanti, adik kami tercinta, telah sah menjadi seorang istri, mendampingi pria yang 
-                                Allah pilihkan, Wiwik Tri Budi Mulyono.
-                            </p>
-                            <p style="font-style: italic; color: #1e40af; margin-bottom: 15px;">
-                                Saya berdiri di sini mewakili ibu kami, Ibu Tarmi, dan almarhum bapak kami, Bapak Karmain.
-								Berdiri di hadapan kalian berdua, hati saya dipenuhi kebanggaan dan doa. 
-                                Kalian telah mengikat janji suci di hadapan Allah SWT, keluarga, dan para saksi.
-                            </p>
-                            <p style="font-style: italic; color: #1e40af; margin-bottom: 15px;">
-                                Kepada Wiwik, kami percayakan putri kami yang sangat kami cintai. Jagalah dia dengan kasih sayang, 
-                                bimbinglah dia dengan sabar, dan lindungilah dia dengan keikhlasan. Kepada Tri Riyanti, 
-                                jadilah istri yang sholehah, pendamping yang setia, dan ibu yang bijaksana kelak.
-                            </p>
-                            <p style="font-style: italic; color: #1e40af;">
-                                Semoga Allah SWT senantiasa memberkahi rumah tangga kalian dengan kebahagiaan, 
-                                kesehatan, keturunan yang sholeh sholehah, dan ridho-Nya. Aamiin Ya Rabbal Alamiin.<br>
-                                <strong>Wassalamu'alaikum warahmatullahi wabarakatuh."</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Bp. Agung (pemberi wejangan), Tim WO (koordinator mic)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">09.45 – 10.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🤝</span>
-                        Sungkeman & Salaman Keluarga
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>👪 Urutan Sungkeman:</h4>
-                        <ul>
-                            <li><strong>Keluarga CPW:</strong> Ibu Tarmi → Bp. Agung → Ibu Carolin → Ibu Linatis</li>
-                            <li><strong>Keluarga CPP:</strong> Orang tua & keluarga terdekat CPP</li>
-                            <li><strong>Para Saksi & Tokoh:</strong> Bp. Basari, Bp. Bambang, Penghulu/Naib</li>
-                        </ul>
-                    </div>
-                    <div class="section">
-                        <h4>🎁 Penyerahan Simbolik:</h4>
-                        <ul>
-                            <li>Perhiasan/mas kawin dari CPP kepada CPW</li>
-                            <li>Cindera mata keluarga (jika ada)</li>
-                            <li>Buket bunga untuk CPW</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO (atur alur) & Dokumentasi (capture moment)</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Dokumentasi fokus pada moment sungkeman & penyerahan mas kawin</li>
-                            <li>Jangan terburu-buru, beri waktu untuk moment haru</li>
-                            <li>Musik instrumental lembut</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">10.00 – 10.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">📸</span>
-                        Sesi Foto Keluarga & Dokumentasi
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>📷 Susunan Foto:</h4>
-                        <ul>
-                            <li><strong>Foto 1:</strong> Pengantin + Keluarga Inti (orang tua, saudara kandung)</li>
-                            <li><strong>Foto 2:</strong> Pengantin + Keluarga Besar CPW</li>
-                            <li><strong>Foto 3:</strong> Pengantin + Keluarga Besar CPP</li>
-                            <li><strong>Foto 4:</strong> Pengantin + Saksi + Penghulu + Tokoh</li>
-                            <li><strong>Foto 5:</strong> Pengantin + Seluruh Tamu Undangan</li>
-                            <li><strong>Foto 6:</strong> Pengantin berdua (couple shot)</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p><strong>Fotografer:</strong> Tim Dade Rias<br>
-                        <strong>Koordinator Posisi:</strong> Tim WO</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Penataan posisi dari orang terdekat ke terluar</li>
-                            <li>Pastikan semua tamu ikut serta dalam foto besar</li>
-                            <li>Sediakan cermin kecil untuk touch up CPW</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">10.30 – 12.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🍽️</span>
-                        Jamuan Makan & Silaturahmi
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🍛 Menu Jamuan: Paket Anthurium</h4>
-                        <ul>
-                            <li>Nasi putih</li>
-                            <li>Gurame Asam Manis</li>
-                            <li>Ayam Goreng</li>
-                            <li>Cah Sayuran</li>
-                            <li>Bakmi Goreng</li>
-                            <li>Sambal</li>
-                            <li>kerupuk</li>
-                            <li>Es Coctail / Es Buah</li>
-                            <li>Air Mineral</li>
-                            <li>teh / es Teh</li>    
-                            <li>3 Snack + Air Mineral</li>
-						</ul>
-                    </div>
-                    <div class="section">
-                        <h4>🎪 Pengaturan Tempat:</h4>
-                        <ul>
-                            <li>Pengantin & keluarga inti di meja utama</li>
-                            <li>Tamu undangan di meja bundar (8-10 orang per meja)</li>
-                            <li>Area buffet terpisah untuk ambil makanan</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p><strong>Katering:</strong> Resto Ulam Sari<br>
-                        <strong>Pelayanan:</strong> Tim Resto + keluarga sukarelawan</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Pastikan makanan cukup untuk ±70 orang + 10% buffer</li>
-                            <li>Sediakan tempat cuci tangan & tissue</li>
-                            <li>Musik latar instrumental selama jamuan</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">12.00 – 12.30 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🙏</span>
-                        Penutupan & Perpisahan
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🎤 Agenda Penutupan:</h4>
-                        <ul>
-                            <li>Sambutan penutup dari MC</li>
-                            <li>Ucapan terima kasih dari kedua mempelai</li>
-                            <li>Doa penutup</li>
-                            <li>Penyerahan sovenir/bingkisan (jika ada)</li>
-                            <li>Salaman perpisahan</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p>Tim WO & MC untuk koordinasi acara penutupan</p>
-                    </div>
-                    <div class="notes">
-                        <h4>📝 Catatan WO:</h4>
-                        <ul>
-                            <li>Pastikan tidak ada yang tertinggal</li>
-                            <li>Cek kembali peralatan pribadi pengantin</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="time-header">
-                    <div class="time-badge">12.30 – 13.00 WIB</div>
-                    <div class="activity-title">
-                        <span class="emoji">🧹</span>
-                        Beres-Beres & Evaluasi
-                    </div>
-                </div>
-                <div class="activity-content">
-                    <div class="section">
-                        <h4>🧽 Kegiatan Akhir:</h4>
-                        <ul>
-                            <li>Pembersihan venue oleh tim resto</li>
-                            <li>Packing peralatan & properti WO</li>
-                            <li>Evaluasi singkat dengan tim</li>
-                            <li>Koordinasi dokumentasi (foto/video) dengan pengantin</li>
-                            <li>Cek tagihan final dengan pihak venue</li>
-                        </ul>
-                    </div>
-                    <div class="pic-info">
-                        <h4>👤 PIC:</h4>
-                        <p><strong>Venue:</strong> Tim Resto Ulam Sari<br>
-                        <strong>WO:</strong> Dade Rias<br>
-                        <strong>Dokumentasi:</strong> Fotografer</p>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <div style="font-weight: bold; margin-bottom: 10px; color: #8B4513;">Biaya Gabungan Lainnya:</div>
+                    <div class="services-grid">
+                        <div class="service-item">Make up manten Solo putri muslim</div>
+                        <div class="service-item">Fotografer indoor & outdoor</div>
+                        <div class="service-item">Henna & nail art</div>
+                        <div class="service-item">Paranatacara & pemandu acara</div>
+                        <div class="service-item">Make up cpp + Bapak-Ibu besan</div>
+                        <div class="service-item">Pembacaan ayat suci Al-Qur'an</div>
+                        <div class="service-item">Make up keluarga 3 orang</div>
+                        <div class="service-item">Sambutan dari pihak cpw</div>
+                        <div class="service-item">Make up cpw + Bapak-Ibu besan</div>
+                        <div class="service-item">Dekorasi 3 meter</div>
+                        <div class="service-item">Make up keluarga 3 orang</div>
+                        <div class="service-item">Meja & kursi akad (1 meja + 6 kursi)</div>
+                        <div class="service-item">Panggih</div>
+                        <div class="service-item">Rapat pra akad</div>
+                    </div>
+                    <div style="margin-top: 10px; font-weight: bold; color: #d63384;">
+                        Tambahan Make up 1 orang (Gina) — Tambahan
                     </div>
                 </div>
             </div>
         </div>
-
+        
+        <div class="akad-summary">
+            <div class="akad-summary-title">SUMMARY BIAYA AKAD NIKAH</div>
+            <div class="akad-summary-row">
+                <span>Total kebutuhan biaya</span>
+                <span class="amount">Rp 15.883.900</span>
+            </div>
+            <div class="akad-summary-row">
+                <span>Total pembayaran (DP)</span>
+                <span class="amount">Rp 24.500.000</span>
+            </div>
+            <div class="akad-summary-row final">
+                <span>KELEBIHAN PEMBAYARAN</span>
+                <span class="amount">Rp 8.616.100</span>
+            </div>
+        </div>
+        
         <div class="footer">
-            <div style="margin-bottom: 20px;">
-                <h3>📋 CHECKLIST PENTING</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; text-align: left;">
-                    <div>
-                        <h4>H-1 Persiapan:</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li>☐ Konfirmasi kehadiran penghulu/naib</li>
-                            <li>☐ Cek kelengkapan dokumen nikah</li>
-                            <li>☐ Test sound system</li>
-                            <li>☐ Konfirmasi menu & jumlah porsi</li>
-                            <li>☐ Briefing tim & koordinasi transportasi</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Hari H Morning:</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li>☐ CPW siap jam 07.00</li>
-                            <li>☐ Keluarga CPW siap jam 07.30</li>
-                            <li>☐ Keluarga CPP siap jam 07.30</li>
-                            <li>☐ Venue setup selesai jam 08.00</li>
-                            <li>☐ All crew standby jam 07.30</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                <h3>📞 KONTAK DARURAT</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-                    <div>
-                        <strong>🎭 WO - Dade Rias:</strong><br>
-                        081229690779
-                    </div>
-                    <div>
-                        <strong>🏛️ Venue - Resto Ulam Sari:</strong><br>
-
-                    </div>
-                    <div>
-                        <strong>🚗 Transportasi - Bp. Agus:</strong><br>
-                        087710676665
-                    </div>
-                    <div>
-                        <strong>🕌 Penghulu/Naib:</strong><br>
-
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
-                <p style="font-size: 1.1rem; margin-bottom: 10px;">
-                    <strong>💐 Semoga Allah SWT memberkahi pernikahan Wiwik & Tri Riyanti 💐</strong>
-                </p>
-                <p style="opacity: 0.8;">
-                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, 
-                    supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. 
-                    Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir."
-                </p>
-                <p style="font-style: italic; margin-top: 10px;">
-                    - QS. Ar-Rum: 21 -
-                </p>
-            </div>
-            
-            <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
-                <p>Rundown ini telah disusun dengan cermat oleh Tim WO Dade Rias</p>
-                <p>Semua timing dapat disesuaikan dengan kondisi lapangan</p>
-            </div>
+            <p><strong>Halaman 1 dari 2 - Akad Nikah</strong></p>
         </div>
     </div>
 
-    <script>
-        // Smooth scrolling untuk pengalaman yang lebih baik
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tambahkan efek fade in saat scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
+    <!-- PAGE 2: RECEPTION -->
+    <div class="page">
 
-            // Observasi semua timeline items
-            document.querySelectorAll('.timeline-item').forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(item);
-            });
-
-            // Tambahkan efek hover yang lebih interaktif
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-        });
-    </script>
+        <div class="package-info">
+            <div class="package-title">PAKET STANDARD RESEPSI</div>
+            <div class="price-info">
+                <div class="original-price">Semula: Rp. 25.500.000</div>
+                <div class="current-price">Menjadi: Rp. 33.000.000</div>
+            </div>
+            <div class="price-note">*(karena ada detil tambahan)</div>
+        </div>
+        
+        <div class="reception-grid">
+            <div class="section">
+                <div class="section-title">MAKE UP & BUSANA</div>
+                <ul class="item-list">
+                    <li>Make up pengantin sepasang (muslim)</li>
+                    <li>1 set busana pengantin resepsi</li>
+                    <li>2 pasang busana dan make up untuk besan</li>
+                    <li>4 set busana dan make up untuk bridesmaid</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">DEKORASI</div>
+                <ul class="item-list">
+                    <li>Janur nama</li>
+                    <li>Pintu masuk</li>
+                    <li>Kotak uang</li>
+                    <li>2 stand foto</li>
+                    <li>Karpet jalan</li>
+                    <li>Taman depan</li>
+                    <li>Dekorasi pelaminan</li>
+                    <li>Background dekor musik</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">DETIL TAMBAHAN</div>
+                <ul class="item-list">
+                    <li>Tambah tratak</li>
+                    <li>Meja angkring 4 meja</li>
+                    <li>Meja panjang 2 meja (air minum, es krim + jajan piringan)</li>
+                    <li>Taplak satin 2 untuk meja domas</li>
+                    <li>Piring 400</li>
+                    <li>Piring leper 200</li>
+                    <li>Mangkok soto 200</li>
+                    <li>Panggung 3x4 tinggi 40 cm</li>
+                    <li>Tambah 1 kipas blower (total 4 buah)</li>
+                    <li>Tambah 2 pramusaji (total 5 orang)</li>
+                    <li>Tambahan kendang elektrik</li>
+                    <li>Tambahan biaya sambutan serah terima (Pak Riza)</li>
+                    <li>Biaya konsumsi dekor 7 orang</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="payment-section">
+            <div class="section-title">PEMBAYARAN RESEPSI</div>
+            <div class="payment-row">
+                <span>DP 1 Resepsi</span>
+                <span class="amount">Rp. 5.000.000</span>
+            </div>
+            <div class="payment-row">
+                <span>Kelebihan dari acara akad sebelumnya</span>
+                <span class="amount">Rp. 8.616.100</span>
+            </div>
+            <div class="payment-row total">
+                <span>TOTAL KEKURANGAN (setelah dikurangi DP & kelebihan akad)</span>
+                <span class="amount">Rp. 19.383.900</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Halaman 2 dari 2 - Resepsi</strong></p>
+            <p><strong>Terima kasih atas kepercayaan Anda kepada Dade Wedding</strong></p>
+            <p>Semoga acara Akad Nikah dan Resepsi berjalan lancar dan berkesan</p>
+        </div>
+    </div>
 </body>
 </html>
